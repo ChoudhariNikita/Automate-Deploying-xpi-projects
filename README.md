@@ -15,12 +15,12 @@ This repository contains a Proof of Concept (PoC) for automating the deployment 
 ## Steps to Use
 
 1. **Clone the Repository**  
-   Clone this repository to your local machine.
+Clone this repository to your local machine.
 
-   ```bash
-   git clone <repository-url>
-   cd <repository-folder>
-   ```
+```bash
+git clone https://github.com/ChoudhariNikita/Automate-Deploying-xpi-projects.git
+cd Automate-Deploying-xpi-projects
+```
 
 2. **Install Dependencies**  
    Install the required Python packages using `pip`.
