@@ -8,18 +8,30 @@ load_dotenv()
 # Base directory where all projects are stored
 base_dir = os.getenv("PROJECTS_DIR")
 
+# Check if base_dir is set
+if not base_dir:
+    raise ValueError("Environment variable 'PROJECTS_DIR' is not set. Please check your .env file.")
+
 # Use script directory to save the JSON
 script_dir = os.path.dirname(os.path.abspath(__file__))
 output_path = os.path.join(script_dir, "projects.json")
 
 # Initialize project list
 projects = []
+# List of folder prefixes to ignore
+ignore_prefixes = ["MCM_","FW_Step_FTP_Size","JDBC_MSSQL","XMLHasndling"]
 
 # Loop through all folders in the base_dir
 for project_folder in os.listdir(base_dir):
+    # Skip folders starting with any prefix in ignore_prefixes
+    if any(project_folder.startswith(prefix) for prefix in ignore_prefixes):
+        print(f"⏩ Skipping folder: {project_folder}")
+        continue
+
     project_path = os.path.join(base_dir, project_folder)
 
     if not os.path.isdir(project_path):
+        continue  # skip files
         continue  # skip files
 
     # Look for a Docker_* subfolder
